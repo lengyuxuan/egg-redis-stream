@@ -34,7 +34,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "p": "tsc -p . && npm publish"
+    "p": "tsc --build --clean && tsc -p . && npm publish"
   },
   "repository": {
     "type": "git",
