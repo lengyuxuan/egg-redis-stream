@@ -29,7 +29,7 @@
   "types": "./index.d.ts",
   "main": "app.js",
   "name": "egg-redis-stream",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "directories": {
     "lib": "lib"
   },
