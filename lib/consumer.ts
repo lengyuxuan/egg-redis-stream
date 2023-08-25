@@ -1,5 +1,4 @@
 import { Redis } from 'ioredis';
-import { setTimeout } from 'timers/promises';
 import { arrToObj } from './util';
 import { BaseContextClass, Context } from 'egg';
 
@@ -57,10 +56,10 @@ export abstract class Consumer<T = Record<string, any>> extends BaseContextClass
         if (messageList.length > 0) {
           await Promise.all(messageList.map((message) => this.process(message.id, message.data)));
         } else {
-          await setTimeout(this.interval);
+          await new Promise((resolve) => setTimeout(resolve, this.interval));
         }
       } catch (error) {
-        await setTimeout(this.interval);
+        await new Promise((resolve) => setTimeout(resolve, this.interval));
       }
     }
   }
