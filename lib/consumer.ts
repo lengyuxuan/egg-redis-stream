@@ -54,7 +54,9 @@ export abstract class Consumer<T = Record<string, any>> extends BaseContextClass
         const messageList = await this.getMessage(id);
         id = '>';
         if (messageList.length > 0) {
-          await Promise.all(messageList.map((message) => this.process(message.id, message.data)));
+          await Promise.all(messageList.map((message) => this.process(message.id, message.data)).catch((error) => {
+            this.ctx.logger.error(error);
+          }));
         } else {
           await new Promise((resolve) => setTimeout(resolve, this.interval));
         }
